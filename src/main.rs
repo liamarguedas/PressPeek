@@ -1,3 +1,8 @@
+mod window;
+
+use window::create_window;
+
+
 fn main() {
-    println!("Hello, world!");
+    create_window();
 }
