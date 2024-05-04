@@ -1,42 +1,23 @@
-use winit::{
-    event_loop::EventLoop,
-    window:: {WindowBuilder, Window},
-};
+use egui::{CentralPanel, Label, Ui, Window};
 
-pub struct AppWindow {
-    window: Window
+pub struct MyWindow {
+    label_text: String,
 }
 
-impl AppWindow{
-
-    pub fn new() -> Self {
-        let with: f32 = 250.0;
-        let height: f32 = 50.0;
-        let event_loop = EventLoop::new();
-
-        let window: Window = WindowBuilder::new()
-            .with_title("")
-            .with_inner_size(winit::dpi::LogicalSize::new(with, height))
-            .with_decorations(true)
-            .with_always_on_top(true)
-            .build(&event_loop)
-            .unwrap();
-        Self { window }
+impl MyWindow {
+   pub fn new() -> Self {
+        Self {
+            label_text: String::from("Hello, World!"),
+        }
     }
-    pub fn run(self) {
-        let window = self.window;
-        
-        window.run(move |event, _, control_flow| {
-            *control_flow = winit::event_loop::ControlFlow::Wait;
 
-            match event {
-                winit::event::Event::WindowEvent { event, .. } => match event {
-                    winit::event::WindowEvent::CloseRequested => *control_flow = winit::event_loop::ControlFlow::Exit,
-                    _ => (),
-                },
-                _ => (),
-            }
+    fn update_label(&mut self, new_text: &str) {
+        self.label_text = String::from(new_text);
+    }
+
+    fn draw_ui(&mut self, ui: &mut Ui) {
+        CentralPanel::default().show(ui, |ui| {
+            ui.label(self.label_text.clone());
         });
     }
 }
-
