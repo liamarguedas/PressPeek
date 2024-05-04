@@ -1,8 +1,8 @@
 mod window;
 
-use window::create_window;
+use self::window::window::presspeek_window;
 
 
 fn main() {
-    create_window();
+    presspeek_window()
 }
