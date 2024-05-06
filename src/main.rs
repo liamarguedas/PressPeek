@@ -1,12 +1,7 @@
-use std::io::{self, Write};
-use crossterm::event::{read, Event, KeyCode};
+mod keyboard;
 
-fn main() -> io::Result<()> {
-    loop {
-        if let Event::Key(event) = read()? {
-            if let KeyCode::Char(c) = event.code {
-                println!("Key pressed: {}", c);
-            }
-        }
-    }
+
+fn main() {
+    let clean_at = 5;
+    keyboard::keyboard::listen_keyboard(clean_at);
 }

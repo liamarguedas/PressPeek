@@ -1,14 +1,21 @@
-use std::io::{self, Write};
 use crossterm::event::{read, Event, KeyCode};
 
-pub fn listen(clean_limit: i32) -> io::Result<()> {
-    
-    let current_keys = Vec<char>;
+pub fn listen_keyboard(array_size: usize) {
+    let mut current_keys: Vec<char> = Vec::new();
 
     loop {
-        if let Event::Key(event) = read()? {
+        if current_keys.len() == array_size {
+            let keys: String = current_keys.iter().collect();
+            println!("Array is full: {}", keys);
+            current_keys.clear();
+        }
+
+        if let Ok(Event::Key(event)) = read() {
             if let KeyCode::Char(c) = event.code {
+                current_keys.push(c);
             }
         }
     }
 }
+
+
