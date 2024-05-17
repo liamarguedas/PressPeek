@@ -1,5 +1,5 @@
 ## IN DEV
 
 
-Logic working, needs display to be solved.
+Logic working, needs display to be solved
 
