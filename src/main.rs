@@ -18,6 +18,8 @@ fn main() {
     // Create a new egui context
     let mut ctx = Context::new();
 
+    printf("test.rs");
+
     // Start the display
     display::display::start_display(receiver, &mut ctx);
 }
